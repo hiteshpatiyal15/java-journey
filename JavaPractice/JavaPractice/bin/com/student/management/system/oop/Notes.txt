@@ -1,0 +1,12 @@
+class are rules which imposed on an object
+object is a real world entity
+object are always occupied memory 
+Local Variable-----------------------------------------------------
+Variables which are created inside the method are local variable
+Local variable are created in Stack memory
+Local variable are never initialized with default value implicitly
+
+Instance Variable-----------------------------------------------------
+Varibale created with non-static keyword we called it instance variable
+Instance variable are always created in HEAP memory
+Instance variable are initialized with ddefault value

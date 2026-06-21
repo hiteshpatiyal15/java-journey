@@ -1,0 +1,23 @@
+Array is Linear Data structure
+Array is Type Safe
+Element could store in 1D, 2D and 3D matrix
+It can hold primitive and non-primitive types
+Declaration of Array - int []array or int array[]
+Initialization of Array - int array[] = new int[size]
+Memory for arrays is always allocated on the heap in Java
+The elements in the array allocated by new will automatically be initialized to zero (for numeric types), false (for boolean) or null (for reference types) 
+---------------------------------------------------------------
+OPERATIONS ON ARRAYS ELEMENTS
+1- Access array elements - arr[0];
+2- Update array elements - arr[0] = 34;
+3- Traverse array for or for each loop
+ for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+4- Size of Array - arr.length;
+5- Arrays of objects - Student[] arr; new Students[size]
+--------------------------------------------------------------- 
+Advantages of Java Arrays
+Efficient Access, Memory Management & Data Organization 
+Limitations of Java Arrays
+Fixed Size, Type Homogeneity & Costly Insertion & Deletion 
