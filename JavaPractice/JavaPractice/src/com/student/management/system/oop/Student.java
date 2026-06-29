@@ -1,24 +1,126 @@
 package com.student.management.system.oop;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Student {
     // Properties of class (Instance variable)
     private String name;
     private int age;
-    private int rollNumber;
+    private String rollNumber;
+    private String contactNumber;
+    private String Address;
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
     private double marksObtainedInEnglish;
     private double marksObtainedInMaths;
     private double marksObtainedInScience;
     private String grade;
 
-    public Student(String name, int age, int rollNumber, double marksObtainedInEnglish, double marksObtainedInMaths,
-            double marksObtainedInScience, String grade) {
-        this.name = name;
-        this.age = age;
-        this.rollNumber = rollNumber;
-        this.marksObtainedInEnglish = marksObtainedInEnglish;
-        this.marksObtainedInMaths = marksObtainedInMaths;
-        this.marksObtainedInScience = marksObtainedInScience;
-        this.grade = grade;
+    public Student(String name, int age, String rollNumber, double marksObtainedInEnglish, double marksObtainedInMaths,
+            double marksObtainedInScience, String grade, String contactNumber, String Address) {
+        if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(marksObtainedInEnglish)
+                && validateMarks(marksObtainedInMaths) && validateMarks(marksObtainedInScience)
+                && validateContactNumber(contactNumber) && validateAddress(Address)) {
+            this.name = name;
+            this.age = age;
+            this.rollNumber = rollNumber;
+            this.marksObtainedInEnglish = marksObtainedInEnglish;
+            this.marksObtainedInMaths = marksObtainedInMaths;
+            this.marksObtainedInScience = marksObtainedInScience;
+            this.grade = grade;
+            this.contactNumber = contactNumber;
+            this.Address = Address;
+        } else {
+            System.out.println("Invalid input provided for student details.");
+        }
+    }
+
+    private boolean validateAddress(String address) {
+        try {
+            if (address != null && !address.trim().isEmpty()) {
+                return true;
+            } else {
+                System.err.println("Invalid Address: " + address);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating address.");
+            return false;
+        }
+    }
+
+    private boolean validateContactNumber(String contactNumber) {
+        try {
+            Pattern pattern = Pattern.compile("\\d{10}"); // Regular expression to match 10 digits
+            Matcher matcher = pattern.matcher(contactNumber);
+            if (matcher.matches()) {
+                return true;
+            } else {
+                System.err.println("Invalid Contact Number: " + contactNumber);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating contact number.");
+            return false;
+        }
+    }
+
+    private boolean validateMarks(double marksObtainedInEnglish2) {
+        try {
+            if (marksObtainedInEnglish2 >= 0 && marksObtainedInEnglish2 <= 100) {
+                return true;
+            } else {
+                System.err.println("Invalid Marks: " + marksObtainedInEnglish2);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating marks.");
+            return false;
+        }
+    }
+
+    private boolean validateRollNumber(String rollNumber) {
+        try {
+            if (rollNumber != null && !rollNumber.trim().isEmpty() && rollNumber.matches("R\\d{3}")) {
+                return true;
+            } else {
+                System.err.println("Invalid Roll Number: " + rollNumber);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating roll number.");
+            return false;
+        }
+    }
+
+    private boolean validateAge(int age2) {
+        try {
+            if (age2 >= 10 && age2 <= 21) {
+                return true;
+            } else {
+                System.err.println("Invalid Age: " + age2);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating age.");
+            return false;
+        }
     }
 
     public String getName() {
@@ -37,18 +139,18 @@ public class Student {
         if (age < 21 && age >= 10)
             this.age = age;
         else
-            System.out.println("Invalid Age");
+            System.err.println("Invalid Age");
     }
 
-    public int getRollNumber() {
+    public String getRollNumber() {
         return rollNumber;
     }
 
-    public void setRollNumber(int rollNumber) {
-        if (rollNumber >= 1)
+    public void setRollNumber(String rollNumber) {
+        if (validateRollNumber(rollNumber))
             this.rollNumber = rollNumber;
         else
-            System.out.println("Invalid Roll Number");
+            System.err.println("Invalid Roll Number");
     }
 
     public double getMarksObtainedInEnglish() {
@@ -59,7 +161,7 @@ public class Student {
         if (marksObtainedInEnglish >= 0 && marksObtainedInEnglish < 100)
             this.marksObtainedInEnglish = marksObtainedInEnglish;
         else
-            System.out.println("Invalid Marks For English");
+            System.err.println("Invalid Marks For English");
     }
 
     public double getMarksObtainedInMaths() {
@@ -70,7 +172,7 @@ public class Student {
         if (marksObtainedInMaths >= 0 && marksObtainedInMaths < 100)
             this.marksObtainedInMaths = marksObtainedInMaths;
         else
-            System.out.println("Invalid Marks For Maths");
+            System.err.println("Invalid Marks For Maths");
     }
 
     public double getMarksObtainedInScience() {
@@ -81,7 +183,7 @@ public class Student {
         if (marksObtainedInScience >= 0 && marksObtainedInScience < 100)
             this.marksObtainedInScience = marksObtainedInScience;
         else
-            System.out.println("Invalid Marks For Science");
+            System.err.println("Invalid Marks For Science");
     }
 
     public String getGrade() {
@@ -94,14 +196,60 @@ public class Student {
 
     public void calculateTotalMarks() {
         double totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
-        System.out.println(totalMarks);
+        System.err.println(totalMarks);
     }
 
     @Override
     public String toString() {
-        return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", marksObtainedInEnglish="
-                + marksObtainedInEnglish + ", marksObtainedInMaths=" + marksObtainedInMaths
-                + ", marksObtainedInScience=" + marksObtainedInScience + ", grade=" + grade + "]";
+        return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", contactNumber="
+                + contactNumber + ", Address=" + Address + ", marksObtainedInEnglish=" + marksObtainedInEnglish
+                + ", marksObtainedInMaths=" + marksObtainedInMaths + ", marksObtainedInScience="
+                + marksObtainedInScience + ", grade=" + grade + "]";
     }
 
+    public void calculatePercentage() {
+        try {
+            double totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
+            double percentage = Math.round((totalMarks / 300) * 100);
+            System.out.println("Percentage: " + percentage + "%");
+        } catch (Exception e) {
+            System.err.println("Error occurred while calculating percentage.");
+        }
+    }
+
+    public void calculateGrade() {
+        try {
+            double totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
+            double percentage = Math.round((totalMarks / 300) * 100);
+
+            if (percentage >= 80) {
+                grade = "A+";
+            } else if (percentage >= 70) {
+                grade = "A";
+            } else if (percentage >= 60) {
+                grade = "B";
+            } else if (percentage >= 50) {
+                grade = "C";
+            } else {
+                grade = "F";
+            }
+            System.out.println("Grade: " + grade);
+        } catch (Exception e) {
+            System.err.println("Error occurred while calculating grade.");
+        }
+    }
+
+    public void displayStudentInfo() {
+        System.out.println("------------------Student Information------------------");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Contact Number: " + contactNumber);
+        System.out.println("Address: " + Address);
+        System.out.println("Marks Obtained in English: " + marksObtainedInEnglish);
+        System.out.println("Marks Obtained in Maths: " + marksObtainedInMaths);
+        System.out.println("Marks Obtained in Science: " + marksObtainedInScience);
+        System.out.println("Grade: " + grade);
+        System.out.println("======================================================");
+    }
 }
