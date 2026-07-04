@@ -1,0 +1,22 @@
+Jave support below inheritance 
+--Single level  ->One child class extends one superclass
+--Multi level   ->A class extends a subclass, creating a chain (e.g., C extends B, and B extends A)
+--Hierarchical  -> One superclass is extended by multiple subclasses (e.g., both Dog and Cat extend Animal)
+Not support
+--Multiple
+--Hybrid
+It models an IS-A relationship and primarily promotes code resuability and runtime
+
+Parent class termed as Superclass
+Child class termed as Subclass
+
+extends keyword is used to establish link between child and parent 
+public class child extends parent{
+
+}
+
+Important rules
+private fields and methods of parent class are not inherited directly by subclass
+constructors are not inherited. A subclass contructor always calls parent class contructor first
+every class in Java implicitly extends the java.lang.Object Class if it does not explicitly extend any other class.
+if a class is declared with the final keyword, it cannot be inherited at all
