@@ -2,7 +2,7 @@ package com.logicbuilding;
 
 public class Panagram1 {
     public static void main(String[] args) {
-        String sentence = "The quick brown fox jumps over the lazy do@";
+        String sentence = "The quick brown fox jumps over the lazy dog";
         if (checkPanagam(sentence)) {
             System.out.println("Is Panagram");
         } else {
@@ -14,7 +14,7 @@ public class Panagram1 {
         if (sentence.length() < 26) {
             return false;
         }
-        for (int i = 'a'; i < 'z'; i++) {
+        for (int i = 'a'; i <= 'z'; i++) {
             if (sentence.indexOf(i) == -1) {
                 return false;
             }
