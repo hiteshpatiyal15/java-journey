@@ -1,15 +1,30 @@
 package com.student.management.system.oop;
 
-public class Teacher {
-    private String name;
-    private String age;
-    private String contactNumber;
-    private String address;
+public class Teacher extends Person {
+
     private String professionalDetails;
     private String employeeID;
     private String subject;
     private int yearsOfExperience;
     private static double salary;
+
+    public Teacher(String name, int age, String contactNumber, String professionalDetails, String address,
+            String employeeID, String subject,
+            int yearsOfExperience) {
+        super(name, age, contactNumber, address);
+        if (validateName(name) && validateAge(age) && validateContactNumber(contactNumber) && validateAddress(address)
+                && validateEmployeeID(employeeID) && validateYearsOfExperience(yearsOfExperience)
+                && validateSubject(subject)) {
+            this.professionalDetails = professionalDetails;
+            this.employeeID = employeeID;
+            this.subject = subject;
+            this.yearsOfExperience = yearsOfExperience;
+            calculateSalary();
+        } else {
+            System.out.println("Invalid input provided for teacher details.");
+        }
+    }
+
     private static final double BASE_SALARY = 30000.0; // constant marks with final keyword
     private static final double EXPERIENCE_BONUS = 2000;
 
@@ -27,11 +42,11 @@ public class Teacher {
         }
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         if (validateAge(age)) {
             this.age = age;
         }
@@ -98,25 +113,6 @@ public class Teacher {
 
     private void calculateSalary() {
         salary = BASE_SALARY + (yearsOfExperience * EXPERIENCE_BONUS);
-    }
-
-    public Teacher(String name, String age, String contactNumber, String address, String professionalDetails,
-            String employeeID, String subject, int yearsOfExperience) {
-        if (validateName(name) && validateAge(age) && validateContactNumber(contactNumber) && validateAddress(address)
-                && validateEmployeeID(employeeID) && validateYearsOfExperience(yearsOfExperience)
-                && validateSubject(subject)) {
-            this.name = name;
-            this.age = age;
-            this.contactNumber = contactNumber;
-            this.address = address;
-            this.professionalDetails = professionalDetails;
-            this.employeeID = employeeID;
-            this.subject = subject;
-            this.yearsOfExperience = yearsOfExperience;
-            calculateSalary();
-        } else {
-            System.out.println("Invalid input provided for teacher details.");
-        }
     }
 
     private boolean validateSubject(String subject) {
@@ -203,9 +199,9 @@ public class Teacher {
         }
     }
 
-    private boolean validateAge(String age) {
+    private boolean validateAge(int age) {
         try {
-            if (age != null && !age.trim().isEmpty() && Integer.parseInt(age) > 0) {
+            if (age > 24 && age > 0) {
                 return true;
             } else {
                 System.err.println("Invalid Age: " + age);
