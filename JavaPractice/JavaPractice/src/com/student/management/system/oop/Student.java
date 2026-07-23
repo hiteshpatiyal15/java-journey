@@ -1,25 +1,65 @@
 package com.student.management.system.oop;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Student extends Person {
-    // Properties of class (Instance variable)
+
     private String rollNumber;
     private double marksObtainedInEnglish;
     private double marksObtainedInMaths;
     private double marksObtainedInScience;
     private String grade;
 
-    public Student(String name, int age, String rollNumber, double marksObtainedInEnglish, double marksObtainedInMaths,
-            double marksObtainedInScience, String grade, String contactNumber, String address) {
+    public Student(String name, int age, String contactNumber, String address, String rollNumber,
+            double marksObtainedInEnglish,
+            double marksObtainedInMaths, double marksObtainedInScience) {
         super(name, age, address, contactNumber);
-        if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(marksObtainedInEnglish)
+        if (validateName(name) && validateAge(age) && validateRollNumber(rollNumber)
+                && validateMarks(marksObtainedInEnglish)
                 && validateMarks(marksObtainedInMaths) && validateMarks(marksObtainedInScience)) {
+            this.name = name;
+            this.age = age;
+            this.address = address;
             this.rollNumber = rollNumber;
+            this.contactNumber = contactNumber;
             this.marksObtainedInEnglish = marksObtainedInEnglish;
             this.marksObtainedInMaths = marksObtainedInMaths;
             this.marksObtainedInScience = marksObtainedInScience;
-            this.grade = grade;
         } else {
             System.out.println("Invalid input provided for student details.");
+        }
+    }
+
+    // Properties of class (Instance variable)
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private boolean validateName(String name) {
+        try {
+            if (name != null && !name.trim().isEmpty()) {
+                return true;
+            } else {
+                System.err.println("Invalid Name: " + name);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred while validating name.");
+            return false;
         }
     }
 
@@ -51,12 +91,12 @@ public class Student extends Person {
         }
     }
 
-    private boolean validateAge(int age2) {
+    private boolean validateAge(int age) {
         try {
-            if (age2 >= 10 && age2 <= 21) {
+            if (age >= 10 && age <= 21) {
                 return true;
             } else {
-                System.err.println("Invalid Age: " + age2);
+                System.err.println("Invalid Age: " + age);
                 return false;
             }
         } catch (Exception e) {
