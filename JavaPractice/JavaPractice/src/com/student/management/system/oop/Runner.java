@@ -8,7 +8,7 @@ public class Runner {
         s1.calculateGrade();
         s1.displayStudentInfo();
 
-        Teacher t1 = new Teacher("John Doe", "35", "1234567890", "Mumbai", "Java", "T123",
+        Teacher t1 = new Teacher("John Doe", 35, "1234567890", "Mumbai", "Teacher", "T123",
                 "Mathematics", 10);
         t1.displayTeacherInformation();
     }

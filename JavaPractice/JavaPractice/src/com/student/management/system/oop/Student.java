@@ -1,83 +1,25 @@
 package com.student.management.system.oop;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class Student {
+public class Student extends Person {
     // Properties of class (Instance variable)
-    private String name;
-    private int age;
     private String rollNumber;
-    private String contactNumber;
-    private String Address;
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
-    }
-
     private double marksObtainedInEnglish;
     private double marksObtainedInMaths;
     private double marksObtainedInScience;
     private String grade;
 
     public Student(String name, int age, String rollNumber, double marksObtainedInEnglish, double marksObtainedInMaths,
-            double marksObtainedInScience, String grade, String contactNumber, String Address) {
+            double marksObtainedInScience, String grade, String contactNumber, String address) {
+        super(name, age, address, contactNumber);
         if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(marksObtainedInEnglish)
-                && validateMarks(marksObtainedInMaths) && validateMarks(marksObtainedInScience)
-                && validateContactNumber(contactNumber) && validateAddress(Address)) {
-            this.name = name;
-            this.age = age;
+                && validateMarks(marksObtainedInMaths) && validateMarks(marksObtainedInScience)) {
             this.rollNumber = rollNumber;
             this.marksObtainedInEnglish = marksObtainedInEnglish;
             this.marksObtainedInMaths = marksObtainedInMaths;
             this.marksObtainedInScience = marksObtainedInScience;
             this.grade = grade;
-            this.contactNumber = contactNumber;
-            this.Address = Address;
         } else {
             System.out.println("Invalid input provided for student details.");
-        }
-    }
-
-    private boolean validateAddress(String address) {
-        try {
-            if (address != null && !address.trim().isEmpty()) {
-                return true;
-            } else {
-                System.err.println("Invalid Address: " + address);
-                return false;
-            }
-        } catch (Exception e) {
-            System.err.println("Error occurred while validating address.");
-            return false;
-        }
-    }
-
-    private boolean validateContactNumber(String contactNumber) {
-        try {
-            Pattern pattern = Pattern.compile("\\d{10}"); // Regular expression to match 10 digits
-            Matcher matcher = pattern.matcher(contactNumber);
-            if (matcher.matches()) {
-                return true;
-            } else {
-                System.err.println("Invalid Contact Number: " + contactNumber);
-                return false;
-            }
-        } catch (Exception e) {
-            System.err.println("Error occurred while validating contact number.");
-            return false;
         }
     }
 
@@ -202,7 +144,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", contactNumber="
-                + contactNumber + ", Address=" + Address + ", marksObtainedInEnglish=" + marksObtainedInEnglish
+                + contactNumber + ", Address=" + address + ", marksObtainedInEnglish=" + marksObtainedInEnglish
                 + ", marksObtainedInMaths=" + marksObtainedInMaths + ", marksObtainedInScience="
                 + marksObtainedInScience + ", grade=" + grade + "]";
     }
@@ -245,7 +187,7 @@ public class Student {
         System.out.println("Age: " + age);
         System.out.println("Roll Number: " + rollNumber);
         System.out.println("Contact Number: " + contactNumber);
-        System.out.println("Address: " + Address);
+        System.out.println("Address: " + address);
         System.out.println("Marks Obtained in English: " + marksObtainedInEnglish);
         System.out.println("Marks Obtained in Maths: " + marksObtainedInMaths);
         System.out.println("Marks Obtained in Science: " + marksObtainedInScience);

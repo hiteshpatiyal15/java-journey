@@ -1,10 +1,6 @@
 package com.student.management.system.oop;
 
-public class Teacher {
-    private String name;
-    private String age;
-    private String contactNumber;
-    private String address;
+public class Teacher extends Person {
     private String professionalDetails;
     private String employeeID;
     private String subject;
@@ -24,16 +20,6 @@ public class Teacher {
     public void setName(String name) {
         if (validateName(name)) {
             this.name = name;
-        }
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        if (validateAge(age)) {
-            this.age = age;
         }
     }
 
@@ -100,15 +86,11 @@ public class Teacher {
         salary = BASE_SALARY + (yearsOfExperience * EXPERIENCE_BONUS);
     }
 
-    public Teacher(String name, String age, String contactNumber, String address, String professionalDetails,
+    public Teacher(String name, int age, String contactNumber, String address, String professionalDetails,
             String employeeID, String subject, int yearsOfExperience) {
-        if (validateName(name) && validateAge(age) && validateContactNumber(contactNumber) && validateAddress(address)
-                && validateEmployeeID(employeeID) && validateYearsOfExperience(yearsOfExperience)
+        super(name, age, address, contactNumber);
+        if (validateAge(age) && validateEmployeeID(employeeID) && validateYearsOfExperience(yearsOfExperience)
                 && validateSubject(subject)) {
-            this.name = name;
-            this.age = age;
-            this.contactNumber = contactNumber;
-            this.address = address;
             this.professionalDetails = professionalDetails;
             this.employeeID = employeeID;
             this.subject = subject;
@@ -203,9 +185,9 @@ public class Teacher {
         }
     }
 
-    private boolean validateAge(String age) {
+    private boolean validateAge(int age) {
         try {
-            if (age != null && !age.trim().isEmpty() && Integer.parseInt(age) > 0) {
+            if (age != 0 && age > 0) {
                 return true;
             } else {
                 System.err.println("Invalid Age: " + age);
