@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "JavaPractice/JavaPractice/src/com/student/management/system/demo",
+        "JavaPractice/JavaPractice/src",
+        "JavaPractice/src/com/constructordemo/constructorchaining"
+    ],
+    "java.project.outputPath": "JavaPractice/JavaPractice/bin",
+    "java.project.referencedLibraries": [
+        "JavaPractice/JavaPractice/lib/**/*.jar"
+    ]
+}

@@ -129,6 +129,15 @@ public class Teacher extends Person {
         System.out.println("==========================================================");
     }
 
+    public void updateInformation(boolean approval, String newContactNumber, String newAddress) {
+        System.out.println("*******************HR approved for update Teacher information*******************");
+        if (approval) {
+            updateInformation(newContactNumber, newAddress);
+        } else {
+            System.err.println("HR Approval is not given to update the information");
+        }
+    }
+
     @Override
     public String toString() {
         return "Teacher [name=" + name + ", age=" + age + ", contactNumber=" + contactNumber + ", address=" + address

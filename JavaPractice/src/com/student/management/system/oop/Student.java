@@ -234,4 +234,14 @@ public class Student extends Person {
         System.out.println("Grade: " + grade);
         System.out.println("======================================================");
     }
+
+    public void updateInformation(boolean approval, String newContactNumber, String newAddress) {
+        System.out.println("*******************Parent approved for update Student information*******************");
+        if (approval) {
+            updateInformation(newContactNumber, newAddress);
+            System.out.println("*******************Student information updated successfully*******************");
+        } else {
+            System.err.println("Approval is not given to update the information");
+        }
+    }
 }

@@ -21,7 +21,6 @@ public class Person {
             this.contactNumber = contactNumber;
             this.address = address;
         }
-
     }
 
     private boolean validateName(String name) {
@@ -101,4 +100,12 @@ public class Person {
         }
     }
 
+    protected boolean updateInformation(String newContactNumber, String newAddress) {
+        if (validateContactNumber(newContactNumber) && validateAddress(newAddress)) {
+            this.contactNumber = newContactNumber;
+            this.address = newAddress;
+            return true;
+        }
+        return false;
+    }
 }
